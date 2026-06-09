@@ -18,7 +18,7 @@ class ReservationApp:
         self.default_font = font.nametofont("TkDefaultFont")
         self.default_font.configure(family="NanumGothic", size=12)
 
-        root.title("Vocabulary Quiz")
+        root.title("Seat Reservation System")
 
         ttk.Label(root, text="좌석 예약 시스템").pack(pady=16)
 
