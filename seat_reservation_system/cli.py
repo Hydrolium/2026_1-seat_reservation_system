@@ -1,7 +1,11 @@
 from seat_reservation_system.seat_store import SeatStore
 from seat_reservation_system.seats import SEAT_IDS
+from seat_reservation_system.app import ReservationApp
+
+import tkinter as tk
 
 HELP_TEXT = """Commands:
+gui                       - Open GUI Window
 list                      - List all seats
 reserve <seat_id> <name>  - Reserve a seat
 cancel <seat_id> [name]   - Cancel a reservation
@@ -32,7 +36,13 @@ def run_cli():
             print(HELP_TEXT)
             continue
         try:
-            if command == "list":
+            if command == "gui":
+                root = tk.Tk()
+                ReservationApp(root, store)
+                root.mainloop()
+
+
+            elif command == "list":
                 for seat_id, name in store.list_seats():
                     _print_seat(seat_id, name)
             elif command == "reserve":
