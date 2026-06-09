@@ -1,3 +1,5 @@
+import json
+
 class SeatStore:
     def __init__(self, seat_ids):
         self._seats = {seat_id: None for seat_id in seat_ids}
@@ -28,6 +30,10 @@ class SeatStore:
         reserved = sum(1 for name in self._seats.values() if name)
         total = len(self._seats)
         return {"total": total, "reserved": reserved, "available": total - reserved}
+    
+    def save(self, path):
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(self._seats, f, indent=4, ensure_ascii=False)
 
     def _get(self, seat_id):
         if seat_id not in self._seats:
